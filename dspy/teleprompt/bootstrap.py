@@ -29,6 +29,10 @@ from .vanilla import LabeledFewShot
 
 # TODO: Add baselines=[...]
 
+def print_dict_variables(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
 
 class BootstrapFewShot(Teleprompter):
     def __init__(self, metric=None, metric_threshold=None, teacher_settings={}, max_bootstrapped_demos=4, max_labeled_demos=16, max_rounds=1, max_errors=5):
@@ -141,7 +145,7 @@ class BootstrapFewShot(Teleprompter):
                         predictor.demos = [x for x in predictor.demos if x != example]
 
                     print("******************************* example inputs *******************\n")
-                    print(**example.inputs())
+                    print_dict_variables(**example.inputs())
                     print("\n***************************************************************\n")
                     
                     prediction = teacher(**example.inputs())
