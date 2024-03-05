@@ -140,6 +140,10 @@ class BootstrapFewShot(Teleprompter):
                         predictor_cache[name] = predictor.demos
                         predictor.demos = [x for x in predictor.demos if x != example]
 
+                    print("******************************* example inputs *******************\n")
+                    print(example.inputs())
+                    print("\n***************************************************************\n")
+                    
                     prediction = teacher(**example.inputs())
                     trace = dsp.settings.trace
 
